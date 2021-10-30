@@ -1,0 +1,11 @@
+use_gpu: True
+learning_rate: 0.01
+num_epochs: 12
+batch_size: 100
+dropout:
+  use: True
+  dropout_ratio: 0.2
+use_batch_normalization: False
+weight_decay:
+  use: False
+  parameter: 0.01
