@@ -7,9 +7,9 @@ class lenet5_network(nn.Module):
     super().__init__()
 
     self.conv1 = nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5)
-    self.conv2 = nn.Conv2d(in_channels=6, out_channels=12, kernel_size=5)
+    self.conv2 = nn.Conv2d(in_channels=6, out_channels=16, kernel_size=5)
 
-    self.fc1 = nn.Linear(in_features=12*4*4, out_features=120)
+    self.fc1 = nn.Linear(in_features=16*4*4, out_features=120)
     self.fc2 = nn.Linear(in_features=120, out_features=60)
     self.out = nn.Linear(in_features=60, out_features=10)
 
@@ -25,7 +25,7 @@ class lenet5_network(nn.Module):
     n = functional.max_pool2d(n, kernel_size=2, stride=2)
 
     # flattening before inner production layer
-    input_to_linear = 12*4*4
+    input_to_linear = 16*4*4
     # fc1
     n = n.reshape(-1, input_to_linear)
     n = self.fc1(n)
@@ -63,11 +63,11 @@ class lenet5_network_with_dropout(nn.Module):
     super().__init__()
 
     self.conv1 = nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5)
-    self.conv2 = nn.Conv2d(in_channels=6, out_channels=12, kernel_size=5)
+    self.conv2 = nn.Conv2d(in_channels=6, out_channels=16, kernel_size=5)
 
     self.dropout_ratio = dropout_ratio
 
-    self.fc1 = nn.Linear(in_features=12*4*4, out_features=120)
+    self.fc1 = nn.Linear(in_features=16*4*4, out_features=120)
     self.fc2 = nn.Linear(in_features=120, out_features=60)
     self.out = nn.Linear(in_features=60, out_features=10)
 
@@ -85,7 +85,7 @@ class lenet5_network_with_dropout(nn.Module):
     n = functional.max_pool2d(n, kernel_size=2, stride=2)
 
     # flattening before inner production layer
-    input_to_linear = 12*4*4
+    input_to_linear = 16*4*4
     # fc1
     n = n.reshape(-1, input_to_linear)
     n = self.fc1(n)
@@ -126,10 +126,10 @@ class lenet5_network_with_batch_normaliztion(nn.Module):
     self.conv1 = nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5)
     self.conv1_bn = nn.BatchNorm2d(6)
 
-    self.conv2 = nn.Conv2d(in_channels=6, out_channels=12, kernel_size=5)
-    self.conv2_bn = nn.BatchNorm2d(12)
+    self.conv2 = nn.Conv2d(in_channels=6, out_channels=16, kernel_size=5)
+    self.conv2_bn = nn.BatchNorm2d(16)
 
-    self.fc1 = nn.Linear(in_features=12*4*4, out_features=120)
+    self.fc1 = nn.Linear(in_features=16*4*4, out_features=120)
     self.fc2 = nn.Linear(in_features=120, out_features=60)
     self.out = nn.Linear(in_features=60, out_features=10)
 
@@ -147,7 +147,7 @@ class lenet5_network_with_batch_normaliztion(nn.Module):
     n = functional.max_pool2d(n, kernel_size=2, stride=2)
 
     # flattening before inner production layer
-    input_to_linear = 12*4*4
+    input_to_linear = 16*4*4
     # fc1
     n = n.reshape(-1, input_to_linear)
     n = self.fc1(n)
